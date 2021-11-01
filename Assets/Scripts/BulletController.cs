@@ -4,26 +4,19 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public float liveBullet = 10f;
-    private float speed = 0f;
-    private Vector3 direction = new Vector3(0, 0, 0);
+    public float liveBullet = 2f;
+    private float speed = 10f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Destroy(gameObject, liveBullet);
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveBullet();
-
-        liveBullet -= Time.deltaTime;
-        if(liveBullet < 0)
-        {
-            Destroy(gameObject);
-        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -33,7 +26,7 @@ public class BulletController : MonoBehaviour
 
     void MoveBullet()
     {
-        transform.Translate(speed * Time.deltaTime * direction);
+        transform.Translate(speed * Time.deltaTime * Vector3.left);
     }
 
     void DuplicateScale()
